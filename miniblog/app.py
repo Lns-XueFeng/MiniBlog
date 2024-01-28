@@ -5,7 +5,6 @@ from flask_login import LoginManager
 from flask_sqlalchemy import SQLAlchemy
 from flask_bootstrap import Bootstrap4
 from flask_ckeditor import CKEditor
-from flask_frozen import Freezer
 
 from miniblog.config import config
 
