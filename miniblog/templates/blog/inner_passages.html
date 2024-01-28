@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block nav %}
+    <div class="row bg-info nav_div">
+        <ul class="nav nav-tabs">
+            <li role="presentation"><a href="{{ url_for('home') }}">返回</a></li>
+            {% if current_user.is_authenticated %}
+                <li role="presentation"><a href="{{ url_for('new_passage') }}">新建</a></li>
+                <li role="presentation"><a href="{{ url_for('logout') }}">登出</a></li>
+            {% else %}
+                <li role="presentation"><a href="{{ url_for('passages') }}">文章</a></li>
+                <li role="presentation"><a href="{{ url_for('login') }}">登录</a></li>
+            {% endif %}
+        </ul>
+    </div>
+{% endblock %}
+
+{% block left_content %}
+    <div class="col-sm-9 col-xs-12 left_div">
+        <br>
+        <div class="row">
+            <div class="col-xs-12 text-primary">
+                <h4>时光随记铺：</h4>
+                <small>以下记录一些随记、思考、待看的电视剧、电影、纪录片、动漫、技术文章等</small><br>
+                <ul class="ul-re">
+                {% if data %}
+                    {% for passage in data%}
+                        <li class="record">
+                            <header>标题：{{ passage.title }}</header>
+                            <time>日期：{{ passage.create_time }}</time>
+                            <p>文本：{{ passage.text }}</p>
+                        </li><hr>
+                    {% endfor %}
+                {% else %}
+                    <h5>暂时还没有随记被创建！</h5>
+                {% endif %}
+                </ul>
+            </div>
+        </div>
+        <br>
+    </div>
+{% endblock %}

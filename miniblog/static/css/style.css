@@ -1,0 +1,63 @@
+.center-block {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.element {
+  .center-block();
+}
+
+.bg_color {
+  background-color: antiquewhite;
+}
+
+.container_distance {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  border-left: solid lightyellow 1px;
+  border-right: solid lightyellow 1px;
+}
+/* 控制网页头的样式 */
+.top_div {
+  border-bottom: solid lightyellow 1px;
+}
+/* 控制导航栏的样式 */
+.nav_div {
+  border-bottom: solid lightyellow 1px;
+}
+/* 控制内容左栏的样式 */
+.left_div {
+  border-right: solid #d9edf7 1px;
+}
+/* 控制内容右栏的样式 */
+.bottom_div {
+  border-top: solid lightyellow 1px;
+}
+
+/* 控制头像样式 */
+.header {
+  width: 100%;
+  height: 100%;
+}
+
+/* 控制图片样式 */
+.picture {
+  width: 100%;
+  height: 100%;
+  border: solid #d9edf7 1px;
+}
+
+/* 控制随记列表样式 */
+.ul-re {
+  list-style: none;
+}
+
+.record {
+  width: 95%;
+}
+
+/* 控制管理页表单样式 */
+#change form input {
+  width: 200px;
+}

@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block left_content %}
+    <div class="col-sm-9 col-xs-12 left_div">
+        <br>
+        <div class="row">
+            <div class="col-xs-12 text-primary">
+                <h4>笔记文档：</h4>
+                <small>以下是我将自己所学的技术通过笔记的形式进行了系统的梳理，点击以下链接为站内跳转！</small><br>
+                <ul>
+                    {% for name, file in HOME_MD_NOTES.items() %}
+                        <li><a href="{{ url_for('md_notes', name=file) }}">{{ name }}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-xs-12 text-primary">
+                <h4>代码笔记：</h4>
+                <small>以下是我在学习技术的过程中通过代码的方式将知识进行了记录，点击以下链接会跳转到GitHub！</small><br>
+                <ul>
+                    {% for name, url in HOME_CODE_NOTES.items() %}
+                        <li><a href={{ url }}>{{ name }}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-xs-12 text-primary">
+                <h4>原创项目：</h4>
+                <small>以下是我从学习计算机编程到目前为止所开发的较有代表性的项目，点击以下链接会跳转到GitHub！</small><br>
+                <ul>
+                    {% for name, url in HOME_SELF_PROJECTS.items() %}
+                        <li><a href={{ url }}>{{ name }}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-xs-12 text-primary">
+                <h4>推荐书籍：</h4>
+                <small>以下列出一些读过的经典的技术书籍以及我最喜欢的一些课外读物，点击以下链接会跳转到豆瓣网！</small><br>
+                <ul>
+                    {% for name, url in HOME_LOVE_BOOKS.items() %}
+                        <li><a href={{ url }}>{{ name }}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        <br>
+    </div>
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+
+{% block left_content %}
+    <div class="visible-lg col-xs-3 left_div">
+        <div class="text-primary"><h4>文档目录：</h4></div>
+        <div> {{ toc }} </div>
+    </div>
+{% endblock %}
+
+{% block right_content %}
+    <div class="col-lg-9 col-xs-12">
+        <div> {{ content }} </div>
+    </div>
+{% endblock %}

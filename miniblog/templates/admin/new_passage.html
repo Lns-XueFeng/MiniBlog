@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% from 'bootstrap4/form.html' import render_form %}
+
+{% block left_content %}
+    <br>
+    <div class="col-sm-9 col-xs-12 left_div text-center text-primary">
+        <form method="POST" action="{{ url_for('new_passage') }}">
+            <div class="form-group">
+                {{ render_form(form) }}
+            </div>
+        </form>
+        {{ ckeditor.load() }}
+        {{ ckeditor.config(name='body') }}
+    </div>
+{% endblock %}
+
+{% block add_script %}
+    <script src="{{ url_for('static', filename='/js/ckeditor.js') }}"></script>
+{% endblock %}

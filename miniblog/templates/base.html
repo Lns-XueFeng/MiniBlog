@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <link rel="stylesheet" href="{{ url_for('static', filename='/css/bootstrap.min.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='/css/style.css') }}">
+        <link rel="icon" href="{{ url_for('static', filename='/images/piano.ico') }}">
+        <title>FengBlog</title>
+    </head>
+    <body class="bg_color">
+        <div class="container bg-warning container_distance">
+            <!-- 网页头 -->
+            <div class="row bg-primary top_div">
+                <div class="col-xs-12">
+                    <h1>{{ g.webtitle }}</h1>
+                    <small>{{ g.websignature }}</small>
+                </div>
+            </div>
+            <!-- 导航栏 -->
+            {% block nav %}
+            <div class="row bg-info nav_div">
+                <ul class="nav nav-tabs">
+                  <li role="presentation"><a href="{{ url_for('home') }}">主页</a></li>
+                  <li role="presentation"><a href="{{ url_for('passages') }}">文章</a></li>
+                  <li role="presentation"><a href="{{ url_for('about') }}">关于我</a></li>
+                  {% if current_user.is_authenticated %}
+                    <li role="presentation"><a href="{{ url_for('admin') }}">后台管理</a></li>
+                  {% endif %}
+                </ul>
+            </div>
+            {% endblock %}
+
+            {% block flashed %}
+                {% if get_flashed_messages() %}
+                    <div class="row">
+                        <div class="col-xs-9 bg-danger">
+                            {% for message in get_flashed_messages() %}
+                                <div class="row">
+                                    <div class="col-xs-12 text-center text-primary">{{ message }}</div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                {% endif %}
+            {% endblock %}
+            
+            <div class="row">
+                <!-- 内容左栏 -->
+                {% block left_content %} {% endblock %}
+                <!-- 内容右栏 -->
+                {% block right_content %}
+                    <div class="hidden-xs col-xs-3 text-primary">
+                        <div class="row">
+                            <div class="col-xs-6"><br>
+                                <img src="{{ url_for('static', filename='/images/tokk.jpg') }}" alt="加载失败" class="img-circle header">
+                            </div>
+                            <div class="col-xs-6">
+                                <div class="row"><br><br>
+                                    <div class="col-xs-12">
+                                        <h5>{{ g.nickname }}</h5>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <small><a href="https://github.com/Lns-XueFeng">GitHub主页</a></small>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <small><a href="https://mp.weixin.qq.com/mp/homepage?__biz=Mzg5ODYxMTg0NA==&hid=1&sn=a17f28de8b7df5f0a72a6337d785913b&scene=18">公众号主页</a></small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><br>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <small>{{ g.signature }}</small>
+                            </div>
+                        </div><br>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <small>{{ g.statement }}</small>
+                            </div>
+                        </div><br>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <small>常用技术网站：</small>
+                                <ul>
+                                    {% for title, url in g.techweb.items() %}
+                                        <li><a href={{ url }}>{{ title }}</a></li>
+                                    {% endfor %}
+                                </ul>
+                                <small>常用其他网站：</small>
+                                <ul>
+                                    {% for title, url in g.otherweb.items() %}
+                                        <li><a href={{ url }}>{{ title }}</a></li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                {% endblock %}
+            </div>
+            <!-- 网页底栏 -->
+            <div class="row bottom_div">
+                <div class="col-xs-12 bg-info text-center">
+                    <h5>
+                        个人<a href="https://github.com/Lns-XueFeng" title="Lns-XueFeng">Github</a>主页 |
+                        个人<a href="https://mp.weixin.qq.com/mp/homepage?__biz=Mzg5ODYxMTg0NA==&hid=1&sn=a17f28de8b7df5f0a72a6337d785913b&scene=18" title="神里小姐的屋敷">公众号</a>主页<br>
+                        Copyright @ 2022 <a href="{{ url_for('about') }}">回到古代见李白</a>
+                    </h5>
+                </div>
+            </div>
+        </div>
+    <script rel="script" src="{{ url_for('static', filename='/js/jquery.js') }}"></script>
+    <script rel="script" src="{{ url_for('static', filename='/js/bootstrap.min.js') }}"></script>
+    {% block add_script %} {% endblock %}
+    </body>
+</html>

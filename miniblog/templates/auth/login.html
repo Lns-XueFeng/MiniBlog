@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% from 'bootstrap4/form.html' import render_form %}
+
+{% block left_content %}
+    <br>
+    <div class="col-sm-9 col-xs-12 left_div text-center text-primary">
+        <form method="POST" action="{{ url_for('login') }}">
+            <div class="form-group">
+                {{ render_form(form) }}
+            </div>
+        </form>
+        {{ ckeditor.load() }}
+        {{ ckeditor.config(name='text_field') }}
+    </div>
+{% endblock %}

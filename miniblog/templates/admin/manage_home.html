@@ -1,0 +1,118 @@
+{% extends 'base.html' %}
+
+{% block nav %}
+    <div class="row bg-info nav_div">
+        <ul class="nav nav-tabs">
+                <li role="presentation"><a href="{{ url_for('home') }}">返回</a></li>
+            {% if current_user.is_authenticated %}
+                <li role="presentation"><a href="{{ url_for('passages') }}">文章</a></li>
+                <li role="presentation"><a href="{{ url_for('about') }}">关于我</a></li>
+                <li role="presentation"><a href="{{ url_for('logout') }}">登出</a></li>
+            {% else %}
+                <li role="presentation"><a href="{{ url_for('passages') }}">文章</a></li>
+                <li role="presentation"><a href="{{ url_for('about') }}">关于我</a></li>
+                <li role="presentation"><a href="{{ url_for('login') }}">登录</a></li>
+            {% endif %}
+        </ul>
+    </div>
+{% endblock %}
+
+{% block flashed %}
+    {% if get_flashed_messages() %}
+        <div class="row">
+            <div class="col-xs-12 bg-danger">
+                {% for message in get_flashed_messages() %}
+                    <div class="row">
+                        <div class="col-xs-12 text-center text-primary">{{ message }}</div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}
+
+{% block left_content %}
+    <div class="col-sm-12 col-xs-12 left_div text-center">
+        <br>
+        <div class="row">
+            <div class="col-xs-12 text-primary" id="change">
+                <label>修改网站标题：</label>
+                <form method="post" action="{{ url_for('modify_webtitle') }}">
+                    <input type="text" name="webtitle" placeholder="输入新网站标题" required>
+                    <input type="submit" value="修改">
+                </form><br>
+
+                <label>修改网站签名：</label>
+                <form method="post" action="{{ url_for('modify_websignature') }}">
+                    <input type="text" name="websignature" placeholder="输入新网站签名" required>
+                    <input type="submit" value="修改">
+                </form><br>
+
+                <label>修改个人昵称：</label>
+                <form method="post" action="{{ url_for('modify_nickname') }}">
+                    <input type="text" name="nickname" placeholder="输入新个人昵称" required>
+                    <input type="submit" value="修改">
+                </form><br>
+
+                <label>修改个性签名：</label>
+                <form method="post" action="{{ url_for('modify_signature') }}">
+                    <input type="text" name="signature" placeholder="输入新个性签名" required>
+                    <input type="submit" value="修改">
+                </form><br>
+
+                <label>修改技术栈说明：</label>
+                <form method="post" action="{{ url_for('modify_statement') }}">
+                    <input type="text" name="statement" placeholder="输入新技术栈说明" required>
+                    <input type="submit" value="修改">
+                </form><hr>
+
+                <label>添加常用技术网站：</label>
+                <form method="post" action="{{ url_for('append_tech_web') }}">
+                    <input type="text" name="title" placeholder="输入网站名称" required>
+                    <input type="text" name="url" placeholder="输入网站网址" required>
+                    <input type="submit" value="添加">
+                </form><br>
+
+                <label>添加常用其他网站：</label>
+                <form method="post" action="{{ url_for('append_other_web') }}">
+                    <input type="text" name=""title placeholder="输入网站名称" required>
+                    <input type="text" name="url" placeholder="输入网站网址" required>
+                    <input type="submit" value="添加">
+                </form><hr>
+
+                <label>添加笔记文档：</label>
+                <form method="post" action="{{ url_for('append_note_doc') }}">
+                    <input type="text" name="title" placeholder="输入文档名称" required>
+                    <input type="text" name="url" placeholder="输入文档路径" required>
+                    <input type="submit" value="添加">
+                </form><br>
+
+                <label>添加代码笔记：</label>
+                <form method="post" action="{{ url_for('append_code_note') }}">
+                    <input type="text" name="title" placeholder="输入笔记名称" required>
+                    <input type="text" name="url" placeholder="输入笔记网址" required>
+                    <input type="submit" value="添加">
+                </form><br>
+
+                <label>添加原创项目：</label>
+                <form method="post" action="{{ url_for('append_myproject') }}">
+                    <input type="text" name="title" placeholder="输入项目名称" required>
+                    <input type="text" name="url" placeholder="输入项目网址" required>
+                    <input type="submit" value="添加">
+                </form><br>
+
+                <label>添加推荐书籍：</label>
+                <form method="post" action="{{ url_for('append_rebook') }}">
+                    <input type="text" name="title" placeholder="输入书籍名称" required>
+                    <input type="text" name="url" placeholder="输入书籍网址" required>
+                    <input type="submit" value="添加">
+                </form><hr>
+            </div>
+        </div>
+        <br>
+    </div>
+{% endblock %}
+
+{% block right_content %}
+
+{% endblock %}
