@@ -1,5 +1,7 @@
 import os
 import warnings
+import time 
+import threading
 
 from markdown import markdown
 from markupsafe import Markup, escape
@@ -20,6 +22,25 @@ class MarkdownNoToc(Exception):
     pass
 
 
+PASSAGE_PY, PASSAGE_WEB, PASSAGE_SPIDER, PASSAGE_DISCUSS, PASSAGE_WORK_DISCUSS = {}, {}, {}, {}, {}
+
+
+def period_getdata():
+    global PASSAGE_PY, PASSAGE_WEB, PASSAGE_SPIDER, PASSAGE_DISCUSS, PASSAGE_WORK_DISCUSS
+
+    while True:
+        try:
+            PASSAGE_PY, PASSAGE_WEB, PASSAGE_SPIDER, PASSAGE_DISCUSS, PASSAGE_WORK_DISCUSS = offer_finally_data()
+        except Exception as e:
+            pass
+        time.sleep(86400)   # 一天更新一次公众号数据
+
+
+td = threading.Thread(target=period_getdata)
+td.daemon = True
+td.start()
+
+
 @app.before_request
 def set_some_global_var():
     ps = PersonalSetting()
@@ -34,6 +55,7 @@ def set_some_global_var():
 
 @app.route("/")
 def home():
+    flash("MiniBlog对不同大小的设备均进行了适配，尺寸较小的设备将会舍去右侧栏！")
     ps = PersonalSetting()
     md_notes = ps.get_notedoc
     code_notes = ps.get_codenote
@@ -50,21 +72,14 @@ def home():
 
 @app.route("/passages")
 def passages():
-    try:
-        PASSAGE_PY, PASSAGE_WEB, PASSAGE_SPIDER, PASSAGE_DISCUSS = offer_finally_data()
-        flash("获取公众号文章成功，频繁刷新此页面可能会导致显示失败！")
-    except Exception:
-        warnings.warn("not expect way to get passage url...")
-        flash("获取公众号文章失败，请稍后重试！")
-        PASSAGE_PY, PASSAGE_WEB, PASSAGE_SPIDER, PASSAGE_DISCUSS = {}, {}, {}, {}
-        raise SpidersFailed
-    
+    flash("此页面展示了我的公众号“神里小姐的屋敷”的所有文章！")
     return render_template(
         "blog/passages.html",
         PASSAGE_WEB=PASSAGE_WEB,
         PASSAGE_PY=PASSAGE_PY,
         PASSAGE_SPIDER=PASSAGE_SPIDER,
-        PASSAGE_DISCUSS=PASSAGE_DISCUSS
+        PASSAGE_DISCUSS=PASSAGE_DISCUSS,
+        PASSAGE_WORK_DISCUSS=PASSAGE_WORK_DISCUSS
     )
 
 

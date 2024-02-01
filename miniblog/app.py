@@ -34,7 +34,8 @@ def get_length(dic):
 from miniblog.command import *
 from miniblog.blog import *
 from miniblog.admin import *
+from miniblog.errors import *
 
 
 if __name__ == '__main__':
-    app.run(user_loader=True, debug=True)
+    app.run()

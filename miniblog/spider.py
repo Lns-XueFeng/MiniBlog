@@ -14,6 +14,9 @@ PASSAGE_SPIDER_URL = "https://mp.weixin.qq.com/mp/appmsgalbum?__biz=Mzg5ODYxMTg0
                      "%3Df1bbdd40af6ff2eb6a1d8fe7833250b7%26scene%3D19%23wechat_redirect&nolastread=1#wechat_redirect"
 PASSAGE_DISCUSS_URL = "https://mp.weixin.qq.com/mp/appmsgalbum?__biz=Mzg5ODYxMTg0NA==&" \
                       "action=getalbum&album_id=2173572752933257219#wechat_redirect"
+PASSAGE_WORK_DISCUSS_URL = "https://mp.weixin.qq.com/mp/appmsgalbum?__biz=Mzg5ODYxMTg0NA==&" \
+                       "action=getalbum&album_id=3292357952850542592&scene=173&subscene=&sessionid=svr_2018308c7ac&" \
+                       "enterid=1706624667&from_msgid=2247484607&from_itemidx=1&count=3&nolastread=1#wechat_redirect"
 
 
 headers = {
@@ -26,7 +29,8 @@ def __download_sourcecode():
     WEBDEV_CODE = requests.get(PASSAGE_WEBDEV_URL, headers=headers).text
     SPIDER_CODE = requests.get(PASSAGE_SPIDER_URL, headers=headers).text
     DISCUSS_CODE = requests.get(PASSAGE_DISCUSS_URL, headers=headers).text
-    return PYSHARE_CODE, WEBDEV_CODE, SPIDER_CODE, DISCUSS_CODE
+    WORK_DISCUSS_CODE = requests.get(PASSAGE_WORK_DISCUSS_URL, headers=headers).text
+    return PYSHARE_CODE, WEBDEV_CODE, SPIDER_CODE, DISCUSS_CODE, WORK_DISCUSS_CODE
 
 
 def __match_need_data(string):
@@ -43,15 +47,17 @@ def __get_finally_data(li_1, li_2):
 
 def offer_finally_data():
     # 得到四个页面的源代码
-    PY_CODE, WEB_CODE, SPI_CODE, DIS_CODE = __download_sourcecode()
+    PY_CODE, WEB_CODE, SPI_CODE, DIS_CODE, WORK_DIS_CODE = __download_sourcecode()
     # 匹配到四个页面相应的数据
     PY_TITLE_LI, PY_PSG_URL_LI = __match_need_data(PY_CODE)
     WEB_TITLE_LI, WEB_PSG_URL_LI = __match_need_data(WEB_CODE)
     SPI_TITLE_LI, SPI_PSG_URL_LI = __match_need_data(SPI_CODE)
     DIS_TITLE_LI, DIS_PSG_URL_LI = __match_need_data(DIS_CODE)
+    WORK_DIS_TITLE_LI, WORK_PSG_URL_LI = __match_need_data(WORK_DIS_CODE)
     # 得到最终要使用的数据结构
     PASSAGE_PY = __get_finally_data(PY_TITLE_LI, PY_PSG_URL_LI)
     PASSAGE_WEB = __get_finally_data(WEB_TITLE_LI, WEB_PSG_URL_LI)
     PASSAGE_SPIDER = __get_finally_data(SPI_TITLE_LI, SPI_PSG_URL_LI)
     PASSAGE_DISCUSS = __get_finally_data(DIS_TITLE_LI, DIS_PSG_URL_LI)
-    return PASSAGE_PY, PASSAGE_WEB, PASSAGE_SPIDER, PASSAGE_DISCUSS
+    PASSAGE_WORK_DISCUSS = __get_finally_data(WORK_DIS_TITLE_LI, WORK_PSG_URL_LI)
+    return PASSAGE_PY, PASSAGE_WEB, PASSAGE_SPIDER, PASSAGE_DISCUSS, PASSAGE_WORK_DISCUSS

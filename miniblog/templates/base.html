@@ -6,7 +6,7 @@
         <link rel="stylesheet" href="{{ url_for('static', filename='/css/bootstrap.min.css') }}">
         <link rel="stylesheet" href="{{ url_for('static', filename='/css/style.css') }}">
         <link rel="icon" href="{{ url_for('static', filename='/images/piano.ico') }}">
-        <title>FengBlog</title>
+        <title>MiniBlog</title>
     </head>
     <body class="bg_color">
         <div class="container bg-warning container_distance">
@@ -34,7 +34,7 @@
             {% block flashed %}
                 {% if get_flashed_messages() %}
                     <div class="row">
-                        <div class="col-xs-9 bg-danger">
+                        <div class="col-xs-12 col-sm-9 bg-danger">
                             {% for message in get_flashed_messages() %}
                                 <div class="row">
                                     <div class="col-xs-12 text-center text-primary">{{ message }}</div>

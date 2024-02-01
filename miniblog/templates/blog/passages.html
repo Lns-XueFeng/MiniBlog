@@ -78,7 +78,7 @@
         <hr>
         <div class="row">
             <div class="col-xs-12 text-primary">
-                <h4>青年杂谈：</h4>
+                <h4>生活杂谈：</h4>
                 <small>以下是我写的一些关于个人思考的随笔文章，点击以下链接会跳转到我的个人公众号！</small><br>
                 <ul>
                     {% if PASSAGE_DISCUSS %}
@@ -90,6 +90,25 @@
                     {% endif %}
                     {% if get_length(PASSAGE_DISCUSS) >= 10 %}
                         <li><a href="https://mp.weixin.qq.com/mp/appmsgalbum?__biz=Mzg5ODYxMTg0NA==&action=getalbum&album_id=2173572752933257219#wechat_redirect">更多原创文章请点击此链接查看</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-xs-12 text-primary">
+                <h4>工作杂谈：</h4>
+                <small>以下是我写的一些关于爆炸焊接的笔记文章，点击以下链接会跳转到我的个人公众号！</small><br>
+                <ul>
+                    {% if PASSAGE_WORK_DISCUSS %}
+                        {% for name, url in PASSAGE_WORK_DISCUSS.items() %}
+                            <li><a href="{{ url }}">{{ name }}</a></li>
+                        {% endfor %}
+                    {% else %}
+                        <li><a href="#">暂未获取到相关信息，请重试！</a></li>
+                    {% endif %}
+                    {% if get_length(PASSAGE_WORK_DISCUSS) >= 10 %}
+                        <li><a href="https://mp.weixin.qq.com/mp/appmsgalbum?__biz=Mzg5ODYxMTg0NA==&action=getalbum&album_id=3292357952850542592&scene=173&subscene=&sessionid=svr_2018308c7ac&enterid=1706624667&from_msgid=2247484607&from_itemidx=1&count=3&nolastread=1#wechat_redirect">更多原创文章请点击此链接查看</a></li>
                     {% endif %}
                 </ul>
             </div>
