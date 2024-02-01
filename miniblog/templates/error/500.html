@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block nav %}
+    <div class="row bg-info nav_div">
+        <ul class="nav nav-tabs">
+            <li role="presentation"><a href="{{ url_for('home') }}">主页</a></li>
+        </ul>
+    </div>
+{% endblock %}
+
+{% block left_content %}
+    <div class="col-sm-9 col-xs-12 left_div text-center">
+        <br>
+        <div class="row">
+            <div class="col-xs-12">
+                <h2 style="color: red;">服务器端发生未知错误，请稍后再试！！！</h2>
+            </div>
+        </div>
+        <br>
+    </div>
+{% endblock %}
