@@ -4,35 +4,18 @@
   margin-right: auto;
 }
 
-.element {
-  .center-block();
-}
-
 .bg_color {
-  background-color: antiquewhite;
+  background-color: #336699;
 }
 
 .container_distance {
   margin-top: 30px;
   margin-bottom: 30px;
-  border-left: solid lightyellow 1px;
-  border-right: solid lightyellow 1px;
 }
-/* 控制网页头的样式 */
-.top_div {
-  border-bottom: solid lightyellow 1px;
-}
-/* 控制导航栏的样式 */
-.nav_div {
-  border-bottom: solid lightyellow 1px;
-}
+
 /* 控制内容左栏的样式 */
 .left_div {
   border-right: solid #d9edf7 1px;
-}
-/* 控制内容右栏的样式 */
-.bottom_div {
-  border-top: solid lightyellow 1px;
 }
 
 /* 控制头像样式 */
