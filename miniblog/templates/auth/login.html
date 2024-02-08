@@ -9,7 +9,20 @@
                 {{ render_form(form) }}
             </div>
         </form>
-        {{ ckeditor.load() }}
-        {{ ckeditor.config(name='text_field') }}
+    </div>
+{% endblock %}
+
+{% block right_content %}
+    <div class="hidden-xs col-xs-3 text-primary">
+        <div class="row">
+            <div class="col-xs-12"><br>
+                <h4>欢迎来到管理员登录页面！</h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12"><br>
+                <small>管理员登录后台之后可以对网站所有信息进操作、个性化网站以及新增笔记、项目、文档等...</small>
+            </div>
+        </div>
     </div>
 {% endblock %}

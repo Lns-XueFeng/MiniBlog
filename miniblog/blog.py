@@ -55,7 +55,7 @@ def set_some_global_var():
 
 @app.route("/")
 def home():
-    flash("MiniBlog对不同大小的设备均进行了适配，尺寸较小的设备将会舍去右侧栏！")
+    # flash("MiniBlog对不同大小的设备均进行了适配，尺寸较小的设备将会舍去右侧栏！")
     ps = PersonalSetting()
     md_notes = ps.get_notedoc
     code_notes = ps.get_codenote
